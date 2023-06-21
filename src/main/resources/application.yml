@@ -7,6 +7,18 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: vanhien27031988@gmail.com
+    password: ${GMAIL_SMTP_PASS}
+    properties:
+      mail:
+        # noinspection undefined
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 logging:
   level:
     root: INFO
