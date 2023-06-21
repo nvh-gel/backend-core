@@ -7,8 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,10 +19,17 @@ import org.hibernate.annotations.Where;
 @NoArgsConstructor
 @Entity
 @Where(clause = "is_deleted=false")
-@SQLDelete(sql = "update service set is_deleted=true, updated_at=CURRENT_TIMESTAMP where id=?")
-public class Service extends BaseModel {
+@SQLDelete(sql = "update project set is_deleted=true,updated_at=CURRENT_TIMESTAMP where id=?")
+public class Project extends BaseModel {
 
-    private String title;
+    private String name;
+    private String role;
     @Column(name = "description", length = 500)
     private String description;
+    @Column(name = "from_date")
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    private LocalDateTime fromDate;
+    @Column(name = "to_date")
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    private LocalDateTime toDate;
 }
